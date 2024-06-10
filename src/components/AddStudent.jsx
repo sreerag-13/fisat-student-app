@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import NavStud from './NavStud'
+import axios, { Axios } from 'axios'
 
 const AddStudent = () => {
     const[fisat,changedata]=useState(
@@ -20,6 +21,17 @@ const AddStudent = () => {
     }
     const readvalue=()=>{
         console.log(fisat)
+        axios.post("https://courseapplogix.onrender.com/addstudents",fisat).then((response)=>{
+            console.log(response.data)
+            if (response.data.status=="success") {
+                alert("success")
+                
+            } else {
+                alert("error")
+                
+            }
+        }
+        )
     }
   return (
     <div>
@@ -30,7 +42,7 @@ const AddStudent = () => {
                 <div className="row g-3"> 
                     <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
                         <label htmlFor="" className="form-label" >First Name</label>
-                        <input type="text" className="form-control" name='firstname' value={fisat.firtname} onChange={inputhandler} />
+                        <input type="text" className="form-control" name='firstname' value={fisat.firstname} onChange={inputhandler} />
                     </div>
                     <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
                         <label htmlFor="" className="form-label">Last Name</label>

@@ -6,10 +6,14 @@ const ViewStud = () => {
     const[data,changedata]=useState([])
     const fetchData=()=>
         {
-            axios.get("https://anishpdm.github.io/dummy-api-new/student.json").then((response)=>{
+            axios.get("https://courseapplogix.onrender.com/getdata").then((response)=>{
                 changedata(response.data)
             }
-        ).catch().finally()
+        ).catch((error)=>{
+            alert(error.message)
+        }
+        
+        ).finally()
         }
         useEffect(()=>{fetchData()},[])
     
@@ -32,6 +36,8 @@ const ViewStud = () => {
                                 <th scope="col">lastname</th>
                                 <th scope="col">college</th>
                                 <th scope="col">course</th>
+                                <th scope="col">dob</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -47,6 +53,8 @@ const ViewStud = () => {
                                 <td>{value.lastname}</td>
                                 <td>{value.college}</td>
                                 <td>{value.course}</td>
+                                <td>{value.dob}</td>
+                                
                               </tr>
                                 }
                             )
